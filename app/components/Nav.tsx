@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Home, User, FolderGit2, Briefcase, Mail } from "lucide-react";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/experience", label: "Experience" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Home", icon: Home },
+  { href: "/about", label: "About", icon: User },
+  { href: "/projects", label: "Projects", icon: FolderGit2 },
+  { href: "/experience", label: "Experience", icon: Briefcase },
+  { href: "/contact", label: "Contact", icon: Mail },
 ];
 
 const social = [
@@ -23,26 +24,23 @@ export default function Nav() {
   return (
     <aside className="fixed top-0 left-0 h-screen w-56 border-r border-line px-6 py-8 flex flex-col justify-between hidden md:flex">
       <div>
-        <Link
-          href="/"
-          className="font-display font-bold text-xl tracking-tight text-ink"
-        >
+        <Link href="/" className="font-display font-bold text-xl tracking-tight text-ink">
           SRITHANSH
         </Link>
 
         <nav className="mt-10 flex flex-col gap-1">
           {links.map((link) => {
             const active = pathname === link.href;
+            const Icon = link.icon;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm py-1.5 px-2 -ml-2 rounded transition-colors ${
-                  active
-                    ? "text-signal font-medium"
-                    : "text-graphite hover:text-ink"
+                className={`flex items-center gap-2.5 text-sm py-1.5 px-2 -ml-2 rounded transition-colors ${
+                  active ? "text-signal font-medium" : "text-graphite hover:text-ink"
                 }`}
               >
+                <Icon size={16} strokeWidth={2} />
                 {link.label}
               </Link>
             );
@@ -51,9 +49,7 @@ export default function Nav() {
       </div>
 
       <div>
-        <p className="text-xs uppercase tracking-wide text-graphite mb-3">
-          Links
-        </p>
+        <p className="text-xs uppercase tracking-wide text-graphite mb-3">Links</p>
         <div className="flex flex-col gap-1.5">
           {social.map((s) => (
             <a

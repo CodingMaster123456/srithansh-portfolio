@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
+import PageTransition from "./components/PageTransition";
+import ParallaxGrid from "./components/ParallaxGrid";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,9 +30,14 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${mono.variable} ${grotesk.variable} antialiased`}>
+      <body
+        className={`${inter.variable} ${mono.variable} ${grotesk.variable} antialiased relative`}
+      >
+        <ParallaxGrid />
         <Nav />
-        <div className="md:ml-56">{children}</div>
+        <div className="md:ml-56 relative z-10">
+          <PageTransition>{children}</PageTransition>
+        </div>
       </body>
     </html>
   );

@@ -22,3 +22,12 @@ body {
   background-color: var(--color-signal);
   color: var(--color-paper);
 }
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle, #C4C7CC 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.6;
+}
